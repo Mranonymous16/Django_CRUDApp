@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <style>
+        .image {
+            display: block;
+            /* width: 100%;
+    height: auto; */
+        }
+
+        .button {
+            position: absolute;
+            top: 20%;
+            left: 90%;
+            transform: translate(-50%, -50%);
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button1 {
+            position: absolute;
+            top: 50%;
+            left: 90%;
+            transform: translate(-50%, -50%);
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .text {
+            position: absolute;
+            top: 5%;
+            right: 65%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <img class="image" src=".\static\images\Home_Page.jpg" alt="Home Page" width="100%" height="100%">
+        <div class="text">Employee Management System</div>
+        <button onclick="window.location.href='/emp/'" class="button">Add new employee</button>
+        <button onclick="window.location.href='/show/'" class="button1">View all employees</button>
+    </div>
+</body>
+
+</html>
