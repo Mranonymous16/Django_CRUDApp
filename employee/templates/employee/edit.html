@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Update Employee</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url('{% static "images/Add_Employee.jpg" %}');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      right: 65%;
+      border-radius: 8px;
+      max-width: 400px;
+      margin: 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h3 {
+      text-align: center;
+      margin-bottom: 20px;
+      
+    }
+
+    label {
+      color: #333;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 50%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .btn-success {
+      display: block;
+      width: 30%;
+      padding: 10px;
+      background-color: #28a745;
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 4px;
+      font-size: 16px;
+      margin-top: 10px;
+      margin-left: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-success:hover {
+      background-color: #218838;
+    }
+
+  </style>
+</head>
+
+<body>
+    <form method="POST" class="post-form" action="/update/{{employee.id}}" onsubmit="return validateForm(event)">
+    {% csrf_token %}
+    <div class="container">
+      <h3>Update Employee Details</h3>
+      <center>
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Employee Id:</label>
+        <div class="col-sm-8">
+          <input type="text" name="eid" id="id_eid" required maxlength="20" value="{{ employee.eid }}" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Employee Name:</label> 
+        <div class="col-sm-8">
+          <input type="text" name="ename" id="id_ename" required maxlength="100" value="{{ employee.ename }}" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Employee Email:</label>
+        <div class="col-sm-8">
+          <input type="email" name="eemail" id="id_eemail" required maxlength="254" value="{{ employee.eemail }}" />
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-sm-4 col-form-label">Employee Contact:</label>
+        <div class="col-sm-8">
+          <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ employee.econtact }}" /><br>
+          <span id="contact-error" class="error-message"></span>
+        </div>
+      </div>
+      
+
+      <div class="form-group row">
+        <div class="col-sm-12">
+          <button type="submit" class="btn-success">Update</button>
+        </div>
+      </div>
+    </center>
+    </div>
+  </form>
+</body>
+<script>
+  function validateForm(event) {
+    let contactInput = document.getElementById("id_econtact");
+    let contactValue = contactInput.value.trim();
+    let errorMessage = document.getElementById("contact-error");
+
+    if (contactValue.length < 10) {
+      errorMessage.innerText = "Contact number must be at least 10 digits long.";
+      errorMessage.style.color = "red";
+      event.preventDefault();
+      return false;
+    } else {
+      errorMessage.innerText = "";
+    }
+    return true;
+  }
+</script>
+
+</html>
